@@ -35,7 +35,14 @@ db.on('DELETE', (req, res) => {
 });
 
 http.createServer(function (request, response) {
-    db.emit(request.method, request, response);
+    if (url.parse(request.url).pathname === '/') {
+        let html = fs.readFile('./index.html', (err, data) => {
+           response.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
+           response.end(data);
+        });
+    } else if (url.parse(request.url).pathname === '/api/db') {
+        db.emit(request.method, request, response);
+    }
 }).listen(5000);
 
 console.log('Server created on http://localhost:5000/');
