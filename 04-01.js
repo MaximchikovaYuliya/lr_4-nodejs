@@ -7,6 +7,7 @@ let db = new db_module.DB();
 
 db.on('GET', (req, res) => {
     console.log('DB.GET');
+    res.writeHead(200, {'Content-Type':'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*'});
     db.get((result) => {res.end(JSON.stringify(result));});
 });
 

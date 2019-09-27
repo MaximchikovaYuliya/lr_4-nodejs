@@ -11,18 +11,18 @@
                 method: 'GET', mode: 'no-cors',
                 headers: {'Content-Type':'application/json', 'Accept':'application/json'}
             })
-                .then(response => {return response.json();})
+                .then(response => response.json())
                 .then(pdata => {
                     console.log('pdata', pdata);
-                    result.innerHTML = '<table class="table"><thead><tr>' +
+                    let content = '<table class="table"><thead><tr>' +
                         '      <th scope="col">ID</th>\n' +
                         '      <th scope="col">Full name</th>\n' +
                         '      <th scope="col">Birthday</th>\n' +
-                        '    </tr></thead><tbody>';
-                    pdata.forEach((el) => {
-                        result.innerHTML += '<tr><th scope="row"></th><td>' + el.id + '</td><td>' + el.name + '</td><td>' + el.bday + '</td></tr>';
-                    });
-                    result.innerHTML += '</tbody></table>';
+                        '    </tr></thead><tbody>\n';
+                    for (let i = 0; i<pdata.length; i++) {
+                        content += '<tr><td>' + pdata[i].id + '</td><td>' + pdata[i].name + '</td><td>' + pdata[i].bday + '</td></tr>';
+                    };
+                    result.innerHTML += content + '</tbody></table>';
                 });
         }
     </script>
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm" id="result"></div>
+        <div class="col-sm mt-3" id="result"></div>
     </div>
 </div>
 </body>
