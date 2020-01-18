@@ -40,4 +40,4 @@ http.createServer(function (request, response) {
     }
 }).listen(5000);
 
-console.log('Server created on http://localhost:5000//api/db');
+console.log('Server created on http://localhost:5000/api/db');
